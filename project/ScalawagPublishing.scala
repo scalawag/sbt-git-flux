@@ -36,7 +36,7 @@ object ScalawagPublishing extends AutoPlugin {
       publishTo := sonatypePublishTo.value,
       pomIncludeRepository := { _ => false },
       homepage := Some(url(s"https://github.com/scalawag/${name.value}")),
-      startYear := Some(2018),
+      startYear := Some(2022),
       licenses += "Apache License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
       scmInfo := Some(
         ScmInfo(
