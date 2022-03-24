@@ -21,7 +21,7 @@ addSbtPlugin("com.eed3si9n" % "sbt-projectmatrix" % "0.9.0")
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-addSbtPlugin("org.scalawag.sbt" %% "sbt-git-series" % "0.1.0-pre.6")
+addSbtPlugin("org.scalawag.sbt" %% "sbt-git-flux" % "0.0.1")
 addSbtPlugin("org.scalawag.sbt" %% "sbt-build-metadata" % "0.1.0-pre.2")
 
 addDependencyTreePlugin

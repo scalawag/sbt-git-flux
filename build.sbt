@@ -22,7 +22,6 @@ ThisBuild / versionScheme := Some("early-semver")
 
 val commonSettings = Seq(
   organization := "org.scalawag.sbt",
-  version := "0.0.1",
 )
 
 lazy val plugin = project

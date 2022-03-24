@@ -112,8 +112,12 @@ object GitFluxPlugin extends AutoPlugin {
         ).flatten.mkString("GitFluxPlugin:\n  ", "\n  ", "")
 
         val derived = eligibleRefs.headOption.getOrElse {
-          // TODO: write docs :)
-          throw new MessageOnlyException("Unable to determine a version from git metadata. See docs.")
+          val msg = s"""
+            |Unable to determine a version from the git metadata. One of the following must be true:
+            | - the current branch follows either the format 'develop-X.Y.Z' or 'topic-X.Y.Z-name'
+            | - there is a tag at HEAD that follows either the format 'release-X.Y.Z' or 'release-X.Y.Z-alpha.N'
+          """.stripMargin
+          throw new MessageOnlyException(msg)
         }
 
         Keys.sLog.value.debug(debugMessage)
@@ -127,7 +131,7 @@ object GitFluxPlugin extends AutoPlugin {
           case b: FluxBranch => s"${b.version}-SNAPSHOT"
           case t: FluxTag    => s"${t.version}"
         }
-        Keys.sLog.value.info(s"GitFluxPlugin: derived version $ver based on git ref $ref")
+        Keys.sLog.value.info(s"GitFluxPlugin: derived version $ver based on git ref ${ref.refName}")
         ver
       },
       // By default, there's no legacy tag mapping. The only tags considered are those that match git-flux's patterns.
