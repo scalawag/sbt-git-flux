@@ -76,7 +76,7 @@ object SemVer {
     override def skipWhitespace: Boolean = false
 
     private val numeric: Parser[Int] = "0|[1-9][0-9]*".r.map(_.toInt)
-    private val alphanumeric: Parser[String] = "[0-9A-Za-z-]+".r
+    private val alphanumeric: Parser[String] = rep1("[0-9A-Za-z-]".r).map(_.mkString)
 
     private val core: Parser[(Int, Int, Int)] =
       (numeric ~ '.' ~ numeric ~ '.' ~ numeric).map { case x ~ _ ~ y ~ _ ~ z => (x, y, z) }

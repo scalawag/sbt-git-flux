@@ -21,19 +21,23 @@ jobs:
     env:
       PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
       SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-      SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
+      SONATYPE_USERNAME: ${{ secrets.SONATYPE_USER }}
     steps:
       - name: git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: coursier cache
-        uses: coursier/cache-action@v5
+        uses: coursier/cache-action@v7
       - name: install jdk 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v5
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: install sbt
+        uses: sbt/setup-sbt@v1
       - name: sbt test publishSigned
         run: sbt test publishSigned
-      - name: sbt sonatypeRelease
+      - name: sbt sonaRelease
         if: startsWith(github.ref, 'refs/tags/release-')
-        run: sbt sonatypeRelease
+        run: sbt sonaRelease

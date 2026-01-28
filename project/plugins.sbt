@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.1.2")
-addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.9.7")
-addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.0-M4")
-addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.2")
-addSbtPlugin("com.eed3si9n" % "sbt-projectmatrix" % "0.9.0")
+addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.3.1")
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.12.2")
+addSbtPlugin("com.github.sbt" % "sbt-site" % "1.7.0")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.4.4")
+addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.6")
+addSbtPlugin("com.eed3si9n" % "sbt-projectmatrix" % "0.11.0")
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 

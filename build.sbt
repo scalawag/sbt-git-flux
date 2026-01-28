@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-val Scala212 = "2.12.15"
-val Scala213 = "2.13.8"
+val Scala212 = "2.12.21"
+val Scala213 = "2.13.18"
 
 ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
 ThisBuild / testOptions += Tests.Argument("-oDF")
 
 ThisBuild / versionScheme := Some("early-semver")
+ThisBuild / sonatypeCredentialHost := "central.sonatype.com"
 
 val commonSettings = Seq(
   organization := "org.scalawag.sbt",
@@ -30,9 +31,9 @@ lazy val plugin = project
   .settings(
     sbtPlugin := true,
     name := "sbt-git-flux",
-    addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "1.0.2"),
-    addSbtPlugin("ch.epfl.scala" % "sbt-version-policy" % "2.0.1"),
-    addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "1.0.1"),
+    addSbtPlugin("com.github.sbt" % "sbt-git" % "2.1.0"),
+    addSbtPlugin("ch.epfl.scala" % "sbt-version-policy" % "3.2.1"),
+    addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "1.1.4"),
   )
 
 lazy val lib =
@@ -42,7 +43,7 @@ lazy val lib =
       name := "sbt-git-flux-lib",
       libraryDependencies ++= Seq(
         "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-        "org.scalatest" %% "scalatest" % "3.2.11" % "test",
+        "org.scalatest" %% "scalatest" % "3.2.19" % "test",
       ),
     )
     .jvmPlatform(scalaVersions = Seq(Scala212, Scala213))
@@ -50,6 +51,6 @@ lazy val lib =
 lazy val `sbt-git-flux` = (project in file("."))
   .aggregate(lib.jvm(Scala212), lib.jvm(Scala213), plugin)
   .settings(
-    publishArtifact := false,
+    publish / skip := true,
     dependencyDot := { null }
   )

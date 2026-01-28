@@ -14,8 +14,8 @@
 
 package org.scalawag.sbt.gitflux.plugin
 
-import com.typesafe.sbt.GitPlugin
-import com.typesafe.sbt.SbtGit.git._
+import com.github.sbt.git.GitPlugin
+import com.github.sbt.git.SbtGit.git._
 import com.typesafe.tools.mima.plugin.MimaKeys.{mimaPreviousArtifacts, mimaReportSignatureProblems}
 import org.eclipse.jgit.lib.RepositoryBuilder
 import org.scalawag.sbt.gitflux.lib.{FluxBranch, FluxPrereleaseTag, FluxRef, FluxReleaseTag, FluxTag, SemVer}
